@@ -1105,6 +1105,25 @@ footer {
   background-color: rgb(46, 141, 238);
 }
 
+.collection-page__button {
+  margin: 0 auto;
+  margin-bottom: 36px;
+  min-height: 100%;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: rgb(24, 104, 183);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  padding: 14px 24px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: 200ms;
+}
+
 /* 
 
 ITEM PAGE

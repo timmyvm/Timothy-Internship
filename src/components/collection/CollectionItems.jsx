@@ -19,7 +19,9 @@ export default function CollectionItems() {
             </span>
           </div>
           <select className="collection-items__header__sort">
-            <option value="" default>Default</option>
+            <option value="" default>
+              Default
+            </option>
             <option value="">Price high to low</option>
             <option value="">Price low to high</option>
           </select>
@@ -53,6 +55,7 @@ export default function CollectionItems() {
           ))}
         </div>
       </div>
+      <button className="collection-page__button">Load more</button>
     </section>
   );
 }

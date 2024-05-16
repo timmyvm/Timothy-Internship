@@ -88,6 +88,7 @@ export default function UserPage() {
             ))}
           </div>
         </div>
+        <button className="collection-page__button">Load more</button>
       </section>
     </>
   );
