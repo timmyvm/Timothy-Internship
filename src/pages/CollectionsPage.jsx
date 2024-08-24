@@ -22,7 +22,7 @@ export default function CollectionsPage() {
                 />
                 <div className="collection__info">
                   <h3 className="collection__name">Bored Ape Kennel Club</h3>
-                  <div className="collection__stats">
+                   j   <div className="collection__stats">
                     <div className="collection__stat">
                       <span className="collection__stat__label">Floor</span>
                       <span className="collection__stat__data">0.46 ETH</span>
