@@ -23,6 +23,11 @@
   transform: translateX(-100%)
 }
 
+.skeleton-text-trending{
+  width: 80px;
+  height: 20px;
+}
+
 @keyframes shimmer{
   100%{
         transform: translateX(100%)

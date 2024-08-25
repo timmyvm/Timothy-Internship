@@ -470,6 +470,7 @@ html {
   text-overflow: ellipsis;
   font-weight: 600;
   margin-left: 24px;
+  height: 20px;
 }
 
 .trending-collection__verified {
