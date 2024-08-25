@@ -35,7 +35,7 @@ export default function NewCollections() {
           <h2 className="new-collections__title">New Collections</h2>
           <Swiper
             modules={[Navigation, Pagination ]}
-            spaceBetween={30}
+            spaceBetween={15}
             slidesPerView={6}
             navigation
             controller 
@@ -60,7 +60,7 @@ export default function NewCollections() {
                       <div className="collection__stat">
                         <span className="collection__stat__label">Floor</span>
                         <span className="collection__stat__data">
-                          {item.floor} ETH
+                        {item.floor ? Math.round(item.floor * 100) / 100 : "0.00"} ETH
                         </span>
                       </div>
                       <div className="collection__stat">
