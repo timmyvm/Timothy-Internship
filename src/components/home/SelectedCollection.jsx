@@ -25,7 +25,7 @@ export default function SelectedCollection() {
   }, []);
 
   if (!data) {
-    return <SkeletonSelectedCollection />; // Render skeleton while data is loading
+    return <SkeletonSelectedCollection />; 
   }
 
 
