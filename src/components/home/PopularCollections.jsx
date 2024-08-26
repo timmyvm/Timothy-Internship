@@ -1,15 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import NewCollectionsSkeleton from "./NewCollectionsSkeleton";
+import NewCollectionsSkeleton from "../ui/NewCollectionsSkeleton";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
-import "swiper/css/bundle"
-
+import "swiper/css/bundle";
+import CollectionCard from "../item/CollectionCard";
 
 export default function PopularCollections() {
   const [data, setData] = useState([]);
-
 
   async function fetchData() {
     try {
@@ -22,16 +21,13 @@ export default function PopularCollections() {
     }
   }
 
-
   useEffect(() => {
     fetchData();
   }, []);
 
-
-  if(data.length === 0){
-    return <NewCollectionsSkeleton/>
+  if (data.length === 0) {
+    return <NewCollectionsSkeleton />;
   }
-
 
   return (
     <section id="new-collections">
@@ -39,46 +35,37 @@ export default function PopularCollections() {
         <div className="row">
           <h2 className="new-collections__title">Popular Collections</h2>
           <Swiper
-            modules={[Navigation, Pagination ]}
-            spaceBetween={15}
-            slidesPerView={6}
+            modules={[Navigation, Pagination]}
+            spaceBetween={10}
+            slidesPerView={6} 
             navigation
-            controller
             loop
             pagination={{ clickable: true }}
             scrollbar={{ draggable: true }}
+            breakpoints={{
+              320: {
+                slidesPerView: 1, 
+              },
+              480: {
+                slidesPerView: 2, 
+              },
+              768: {
+                slidesPerView: 3, 
+              },
+              1024: {
+                slidesPerView: 4, 
+              },
+              1200: {
+                slidesPerView: 5, 
+              },
+              1440: {
+                slidesPerView: 6, 
+              },
+            }}
           >
             {data.slice(0, 9).map((item, index) => (
               <SwiperSlide key={index}>
-                <Link
-                  to={`/collection/${item.collectionId}`}
-                  className="collection"
-                >
-                  <img
-                    src={item.imageLink}
-                    alt={item.title}
-                    className="collection__img"
-                  />
-                  <div className="collection__info">
-                    <h3 className="collection__name">{item.title}</h3>
-                    <div className="collection__stats">
-                      <div className="collection__stat">
-                        <span className="collection__stat__label">Floor</span>
-                        <span className="collection__stat__data">
-                        {item.floor ? Math.round(item.floor * 100) / 100 : "0.00"} ETH
-                        </span>
-                      </div>
-                      <div className="collection__stat">
-                        <span className="collection__stat__label">
-                          Total Volume
-                        </span>
-                        <span className="collection__stat__data">
-                          {item.totalVolume} ETH
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
+                <CollectionCard item={item} />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -87,5 +74,3 @@ export default function PopularCollections() {
     </section>
   );
 }
-
-

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import VerifiedIcon from "../../assets/verified.png";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import TrendingSkeleton from "./TrendingSkeleton"
+import TrendingSkeleton from "../ui/TrendingSkeleton"
 
 export default function Trending() {
   const [data, setData] = useState([]);
@@ -53,7 +53,7 @@ export default function Trending() {
                 {data.slice(0, 5).map((item, index) => (
                   <Link
                     to={`/collection/${item.collectionId}`} 
-                    key={item.id}
+                    key={item.rank}
                     className="trending-collection"
                   >
                     <div className="trending-collection__rank">{index + 1}</div>

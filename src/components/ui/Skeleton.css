@@ -28,6 +28,14 @@
   height: 20px;
 }
 
+.collection-skeleton{
+  margin-top: 10px;
+}
+
+.collection-skeleton{
+  width: 20%;
+}
+
 @keyframes shimmer{
   100%{
         transform: translateX(100%)

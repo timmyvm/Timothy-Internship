@@ -3,10 +3,9 @@ import SelectedItemLogo from "../../assets/selected-collection-logo.avif";
 import VerifiedIcon from "../../assets/verified.png";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import SkeletonSelectedCollection from "./SelectedCollectionSkeleton"
+import SkeletonSelectedCollection from "../ui/SelectedCollectionSkeleton";
 
 export default function SelectedCollection() {
-
   const [data, setData] = useState(null);
 
   async function fetchData() {
@@ -14,7 +13,7 @@ export default function SelectedCollection() {
       const response = await axios.get(
         "https://remote-internship-api-production.up.railway.app/selectedCollection"
       );
-      setData(response.data.data)
+      setData(response.data.data);
     } catch (error) {
       alert("Error fetching data:", error);
     }
@@ -25,9 +24,8 @@ export default function SelectedCollection() {
   }, []);
 
   if (!data) {
-    return <SkeletonSelectedCollection />; 
+    return <SkeletonSelectedCollection />;
   }
-
 
   return (
     <header>
@@ -57,7 +55,9 @@ export default function SelectedCollection() {
               className="selected-collection__author__verified"
             />
           </Link>
-          <div className="selected-collection__details">{data?.amountOfItems} Items · {data?.floorPrice} ETH</div>
+          <div className="selected-collection__details">
+            {data?.amountOfItems} Items · {data?.floorPrice} ETH
+          </div>
           <Link to={"/collection"} className="selected-collection__button">
             <div className="green-pulse"></div>
             View Collection

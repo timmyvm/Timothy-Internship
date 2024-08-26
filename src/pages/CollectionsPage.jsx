@@ -1,45 +1,56 @@
-import React, { useEffect } from "react";
-import SelectedCollection from "../components/home/SelectedCollection";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import CollectionCard from "../components/item/CollectionCard";
+import CollectionPageSkeleton from "../components/ui/CollectionPageSkeleton";
 
 export default function CollectionsPage() {
+  const [data, setData] = useState([]);
+  const [visibleCount, setVisibleCount] = useState(12);
+
+  async function fetchData() {
+    try {
+      const response = await axios.get(
+        "https://remote-internship-api-production.up.railway.app/collections"
+      );
+      setData(response.data.data);
+    } catch (error) {
+      alert("Error fetching data:", error);
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const handleLoadMore = () => {
+    setVisibleCount(visibleCount + 6);
+  };
+
+  if (data.length === 0) {
+    return <CollectionPageSkeleton />;
+  }
 
   return (
     <div className="container">
       <div className="row">
         <h1 className="collections-page__title">Collections</h1>
         <div className="collections__body">
-          {new Array(12).fill(0).map((_, index) => (
-            <div className="collection-column">
-              <Link to="/collection" key={index} className="collection">
-                <img
-                  src="https://i.seadn.io/gcs/files/a5414557ae405cb6233b4e2e4fa1d9e6.jpg?auto=format&dpr=1&w=1920"
-                  alt=""
-                  className="collection__img"
-                />
-                <div className="collection__info">
-                  <h3 className="collection__name">Bored Ape Kennel Club</h3>
-                   j   <div className="collection__stats">
-                    <div className="collection__stat">
-                      <span className="collection__stat__label">Floor</span>
-                      <span className="collection__stat__data">0.46 ETH</span>
-                    </div>
-                    <div className="collection__stat">
-                      <span className="collection__stat__label">
-                        Total Volume
-                      </span>
-                      <span className="collection__stat__data">281K ETH</span>
-                    </div>
-                  </div>
-                </div>
-              </Link>
+          {data.slice(0, visibleCount).map((item, index) => (
+            <div className="collection-column" key={item.id}>
+              <CollectionCard item={item} />
             </div>
           ))}
         </div>
-        <button className="collections-page__button">Load more</button>
+
+        {visibleCount < data.length && (
+          <button className="collections-page__button" onClick={handleLoadMore}>
+            Load more
+          </button>
+        )}
       </div>
     </div>
   );
