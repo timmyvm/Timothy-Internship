@@ -26,6 +26,7 @@
 .skeleton-text-trending{
   width: 80px;
   height: 20px;
+  border-radius: 4px;
 }
 
 .collection-skeleton{
@@ -34,6 +35,39 @@
 
 .collection-skeleton{
   width: 20%;
+}
+
+.skeleton-text-collectionInfo{
+  width: 600px;
+  height: 16px;
+  border-radius: 4px;
+}
+
+.skeleton-text-collectionItems{
+  width: 60px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+.skeleton-text-collectionItems.skeleton.big{
+  width: 100px;
+  height: 16px;
+  border-radius: 4px;
+}
+.skeleton-text-collectionItems.skeleton.small{
+  width: 60px;
+  height: 16px;
+  border-radius: 4px;
+}
+
+.collection-items__header__sort.skeleton{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+}
+
+.collection-items__header__sort.skeleton::-ms-expand {
+  display: none; 
 }
 
 @keyframes shimmer{
