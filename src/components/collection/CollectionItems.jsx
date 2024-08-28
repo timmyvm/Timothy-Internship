@@ -1,10 +1,33 @@
 import { faEye } from "@fortawesome/free-regular-svg-icons";
 import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function CollectionItems() {
+export default function CollectionItems({ items, data }) {
+  const [sortOption, setSortOption] = useState("");
+  const [sortedItems, setSortedItems] = useState(items);
+  const [visibleCount, setVisibleCount] = useState(12);
+
+  const handleSortChange = (e) => {
+    const option = e.target.value;
+    setSortOption(option);
+
+    let sortedArray = [...items];
+
+    if (option === "priceHighToLow") {
+      sortedArray.sort((a, b) => b.price - a.price);
+    } else if (option === "priceLowToHigh") {
+      sortedArray.sort((a, b) => a.price - b.price);
+    }
+
+    setSortedItems(sortedArray);
+  };
+
+  const handleLoadMore = () => {
+    setVisibleCount(visibleCount + 6);
+  };
+
   return (
     <section id="collection-items">
       <div className="row collection-items__row">
@@ -15,33 +38,31 @@ export default function CollectionItems() {
               Live
             </span>
             <span className="collection-items__header__results">
-              10 results
+              {sortedItems.length} results
             </span>
           </div>
-          <select className="collection-items__header__sort">
-            <option value="" default>
-              Default
-            </option>
-            <option value="">Price high to low</option>
-            <option value="">Price low to high</option>
+          <select
+            className="collection-items__header__sort"
+            value={sortOption}
+            onChange={handleSortChange}
+          >
+            <option value="">Default</option>
+            <option value="priceHighToLow">Price high to low</option>
+            <option value="priceLowToHigh">Price low to high</option>
           </select>
         </div>
         <div className="collection-items__body">
-          {new Array(8).fill(0).map((_, index) => (
-            <div className="item-column">
-              <Link to={"/item"} key={index} className="item">
+          {sortedItems.slice(0, visibleCount).map((item, index) => (
+            <div className="item-column" key={index}>
+              <Link to={`/item`} className="item">
                 <figure className="item__img__wrapper">
-                  <img
-                    src="https://i.seadn.io/gcs/files/0a085499e0f3800321618af356c5d36b.png?auto=format&dpr=1&w=384"
-                    alt=""
-                    className="item__img"
-                  />
+                  <img src={item.imageLink} alt="" className="item__img" />
                 </figure>
                 <div className="item__details">
-                  <span className="item__details__name">Meebit #0001</span>
-                  <span className="item__details__price">0.98 ETH</span>
+                  <span className="item__details__name">{item.title}</span>
+                  <span className="item__details__price">{item.price} ETH</span>
                   <span className="item__details__last-sale">
-                    Last sale: 7.45 ETH
+                    Last sale: {item.lastSale} ETH
                   </span>
                 </div>
                 <div className="item__see-more">
@@ -55,7 +76,11 @@ export default function CollectionItems() {
           ))}
         </div>
       </div>
-      <button className="collection-page__button">Load more</button>
+      {visibleCount < items.length && (
+        <button className="collection-page__button" onClick={handleLoadMore}>
+          Load more
+        </button>
+      )}
     </section>
   );
 }
