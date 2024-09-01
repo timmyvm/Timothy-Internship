@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import CollectionHeader from "../components/collection/CollectionHeader";
 import CollectionInfo from "../components/collection/CollectionInfo";
-import CollectionItems from "../components/collection/CollectionItems";
+import CollectionItems from "../components/ui/CollectionItems";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import CollectionHeaderSkeleton from "../components/collection/CollectionHeaderSkeleton";
-import CollectionInfoSkeleton from "../components/collection/CollectionInfoSkeleton";
-import CollectionItemsSkeleton from "../components/collection/CollectionItemsSkeleton";
+import CollectionInfoSkeleton from "../components/ui/CollectionInfoSkeleton";
+import CollectionItemsSkeleton from "../components/ui/CollectionItemsSkeleton";
 
 export default function CollectionPage() {
   const { id } = useParams();
