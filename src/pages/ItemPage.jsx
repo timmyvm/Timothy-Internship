@@ -10,8 +10,8 @@ import RecommendedItems from "../components/item/RecommendedItems";
 import { faEthereum } from "@fortawesome/free-brands-svg-icons";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
-import ItemPageSkeleton from "./ItemPageSkeleton";
-import RecommendedItemsSkeleton from "../components/item/RecommendedItemsSkeleton";
+import ItemPageSkeleton from "../components/ui/ItemPageSkeleton";
+import RecommendedItemsSkeleton from "../components/ui/RecommendedItemsSkeleton";
 
 export default function ItemPage() {
   const { id } = useParams();

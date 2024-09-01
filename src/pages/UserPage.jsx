@@ -1,19 +1,59 @@
 import { faEthereum } from "@fortawesome/free-brands-svg-icons";
 import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import UserPageSkeleton from "./UserPageSkeleton";
 
 export default function UserPage() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  const { id } = useParams();
+  const [data, setData] = useState(null);
+  const [visibleCount, setVisibleCount] = useState(12);
+  const [sortOption, setSortOption] = useState("");
+  const [sortedItems, setSortedItems] = useState([]);
 
-  return (
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        `https://remote-internship-api-production.up.railway.app/user/${id}`
+      );
+      setData(response.data.data);
+      setSortedItems(response.data.data.items);  
+    } catch (error) {
+      alert("Error fetching data:", error );
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+    window.scrollTo(0, 0);
+  }, [id]);
+
+  const handleLoadMore = () => {
+    setVisibleCount(visibleCount + 6);
+  };
+
+  const handleSortChange = (e) => {
+    const option = e.target.value;
+    setSortOption(option);
+
+    let sortedArray = [...data.items];  
+
+    if (option === "priceHighToLow") {
+      sortedArray.sort((a, b) => b.price - a.price);
+    } else if (option === "priceLowToHigh") {
+      sortedArray.sort((a, b) => a.price - b.price);
+    }
+
+    setSortedItems(sortedArray);
+  };
+
+  return data ? (
     <>
       <header
         style={{
-          backgroundImage: `url('https://i.seadn.io/s/raw/files/40c1f630bda7d55d859d9107cc86191f.png?auto=format&dpr=1&w=1920')`,
+          backgroundImage: `url('${data.imageLink}')`,
         }}
         id="user-header"
       ></header>
@@ -23,23 +63,25 @@ export default function UserPage() {
           <div className="user-info__wrapper">
             <figure className="user-info__img__wrapper">
               <img
-                src="https://i.seadn.io/s/raw/files/55ada1658290f91266c83f075ea03233.png?auto=format&dpr=1&w=256"
+                src={data.profilePicture}
                 alt=""
                 className="user-info__img"
               />
             </figure>
-            <h1 className="user-info__name">shilpixels</h1>
+            <h1 className="user-info__name">{data.name}</h1>
             <div className="user-info__details">
               <span className="user-info__wallet">
                 <FontAwesomeIcon
                   icon={faEthereum}
                   className="user-info__wallet__icon"
                 />
-                <span className="user-info__wallet__data">shilpixels.eth</span>
+                <span className="user-info__wallet__data">
+                  {data.walletCode}
+                </span>
               </span>
               <span className="user-info__year">
                 <span className="user-info__year__data">
-                  Joined Feburary 2021
+                  Joined {data.creationDate}
                 </span>
               </span>
             </div>
@@ -51,30 +93,38 @@ export default function UserPage() {
         <div className="row user-items__row">
           <div className="user-items__header">
             <div className="user-items__header__left">
-              <span className="user-items__header__text">163 items</span>
+              <span className="user-items__header__text">
+                {sortedItems.length} items
+              </span>
             </div>
-            <select className="user-items__header__sort">
+            <select
+              className="user-items__header__sort"
+              value={sortOption}
+              onChange={handleSortChange}
+            >
               <option value="">Recently purchased</option>
-              <option value="">Price high to low</option>
-              <option value="">Price low to high</option>
+              <option value="priceHighToLow">Price high to low</option>
+              <option value="priceLowToHigh">Price low to high</option>
             </select>
           </div>
           <div className="user-items__body">
-            {new Array(10).fill(0).map((_, index) => (
+            {sortedItems.slice(0, visibleCount).map((item, index) => (
               <div className="item-column" key={index}>
-                <Link to={"/item"} className="item">
+                <Link to={`/item/${item.itemId}`} className="item">
                   <figure className="item__img__wrapper">
                     <img
-                      src="https://i.seadn.io/gcs/files/0a085499e0f3800321618af356c5d36b.png?auto=format&dpr=1&w=384"
-                      alt=""
+                      src={item.imageLink}
+                      alt={item.title}
                       className="item__img"
                     />
                   </figure>
                   <div className="item__details">
-                    <span className="item__details__name">Meebit #0001</span>
-                    <span className="item__details__price">0.98 ETH</span>
+                    <span className="item__details__name">{item.title}</span>
+                    <span className="item__details__price">
+                      {item.price} ETH
+                    </span>
                     <span className="item__details__last-sale">
-                      Last sale: 7.45 ETH
+                      Last sale: {item.lastSale} ETH
                     </span>
                   </div>
                   <a className="item__see-more" href="#">
@@ -88,8 +138,12 @@ export default function UserPage() {
             ))}
           </div>
         </div>
-        <button className="collection-page__button">Load more</button>
+        {visibleCount < sortedItems.length && (
+          <button className="collection-page__button" onClick={handleLoadMore}>
+            Load more
+          </button>
+        )}
       </section>
     </>
-  );
-}
+  ) : <UserPageSkeleton/>;
+}  
