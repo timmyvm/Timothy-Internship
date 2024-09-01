@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import CollectionCard from "../components/item/CollectionCard";
+import CollectionCard from "../components/collection/CollectionCard";
 import CollectionPageSkeleton from "../components/ui/CollectionPageSkeleton";
 
 export default function CollectionsPage() {

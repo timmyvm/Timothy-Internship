@@ -54,7 +54,7 @@ export default function CollectionItems({ items, data }) {
         <div className="collection-items__body">
           {sortedItems.slice(0, visibleCount).map((item, index) => (
             <div className="item-column" key={index}>
-              <Link to={`/item`} className="item">
+              <Link to={`/item/${item.itemId}`} className="item">
                 <figure className="item__img__wrapper">
                   <img src={item.imageLink} alt="" className="item__img" />
                 </figure>

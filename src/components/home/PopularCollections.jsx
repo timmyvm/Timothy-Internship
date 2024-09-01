@@ -5,7 +5,7 @@ import NewCollectionsSkeleton from "../ui/NewCollectionsSkeleton";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import "swiper/css/bundle";
-import CollectionCard from "../item/CollectionCard";
+import CollectionCard from "../collection/CollectionCard";
 
 export default function PopularCollections() {
   const [data, setData] = useState([]);
