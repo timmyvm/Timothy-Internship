@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import CollectionHeader from "../components/collection/CollectionHeader";
 import CollectionInfo from "../components/collection/CollectionInfo";
-import CollectionItems from "../components/ui/CollectionItems";
+import CollectionItems from "../components/collection/CollectionItems";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import CollectionHeaderSkeleton from "../components/collection/CollectionHeaderSkeleton";
+import CollectionHeaderSkeleton from "../components/ui/CollectionHeaderSkeleton";
 import CollectionInfoSkeleton from "../components/ui/CollectionInfoSkeleton";
 import CollectionItemsSkeleton from "../components/ui/CollectionItemsSkeleton";
 
