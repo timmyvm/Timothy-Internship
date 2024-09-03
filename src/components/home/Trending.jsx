@@ -3,6 +3,10 @@ import VerifiedIcon from "../../assets/verified.png";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import TrendingSkeleton from "../ui/TrendingSkeleton"
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+
+AOS.init();
 
 export default function Trending() {
   const [data, setData] = useState([]);
@@ -28,8 +32,8 @@ export default function Trending() {
   
 
   return (
-    <section id="trending">
-      <div className="container">
+    <section id="trending" >
+      <div className="container" data-aos="fade-up">
         <div className="row trending__row">
           <div className="trending__header">
             <h2 className="trending__header__title">Trending NFTs</h2>

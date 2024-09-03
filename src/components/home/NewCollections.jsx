@@ -1,12 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import { Navigation} from "swiper/modules";
 import "swiper/css/bundle"
 import NewCollectionsSkeleton from "../ui/NewCollectionsSkeleton";
 import CollectionCard from "../collection/CollectionCard";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
 
+AOS.init();
 
 export default function NewCollections() {
   const [data, setData] = useState([]);
@@ -23,7 +25,6 @@ export default function NewCollections() {
     }
   }
 
-
   useEffect(() => {
     fetchData();
   }, []);
@@ -33,14 +34,13 @@ export default function NewCollections() {
     return <NewCollectionsSkeleton/>
   }
 
-
   return (
-    <section id="new-collections">
-      <div className="container">
+    <section id="new-collections" >
+      <div className="container" data-aos="fade-up">
         <div className="row">
           <h2 className="new-collections__title">New Collections</h2>
           <Swiper
-            modules={[Navigation, Pagination]}
+            modules={[Navigation]}
             spaceBetween={10}
             slidesPerView={6} 
             navigation

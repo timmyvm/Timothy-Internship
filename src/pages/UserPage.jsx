@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import UserPageSkeleton from "./UserPageSkeleton";
+import UserPageSkeleton from "../components/ui/UserPageSkeleton";
 
 export default function UserPage() {
   const { id } = useParams();

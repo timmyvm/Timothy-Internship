@@ -1,8 +1,8 @@
 import { faTableCells } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react"; // Import Swiper and SwiperSlide
-import { Navigation, Pagination } from "swiper/modules"; // Import Swiper modules
+import { Swiper, SwiperSlide } from "swiper/react"; 
+import { Navigation, Pagination } from "swiper/modules"; 
 2
 import "swiper/css";
 import "swiper/css/navigation";

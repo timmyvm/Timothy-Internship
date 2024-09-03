@@ -4,6 +4,10 @@ import VerifiedIcon from "../../assets/verified.png";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import SkeletonSelectedCollection from "../ui/SelectedCollectionSkeleton";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+
+AOS.init();
 
 export default function SelectedCollection() {
   const [data, setData] = useState(null);
@@ -29,7 +33,7 @@ export default function SelectedCollection() {
 
   return (
     <header>
-      <div className="selected-collection">
+      <div className="selected-collection" >
         <video
           autoPlay
           muted
