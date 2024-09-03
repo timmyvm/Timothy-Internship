@@ -6,6 +6,11 @@ import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import "swiper/css/bundle"
 import NewCollectionsSkeleton from "../ui/NewCollectionsSkeleton";
 import CollectionCard from "../collection/CollectionCard";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+
+AOS.init();
+
 
 
 export default function NewCollections() {
@@ -35,8 +40,8 @@ export default function NewCollections() {
 
 
   return (
-    <section id="new-collections">
-      <div className="container">
+    <section id="new-collections" >
+      <div className="container" data-aos="fade-up">
         <div className="row">
           <h2 className="new-collections__title">New Collections</h2>
           <Swiper

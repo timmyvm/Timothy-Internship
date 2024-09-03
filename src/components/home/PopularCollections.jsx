@@ -6,6 +6,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import "swiper/css/bundle";
 import CollectionCard from "../collection/CollectionCard";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+
+AOS.init();
+
 
 export default function PopularCollections() {
   const [data, setData] = useState([]);
@@ -31,7 +36,7 @@ export default function PopularCollections() {
 
   return (
     <section id="new-collections">
-      <div className="container">
+      <div className="container" data-aos="fade-up" >
         <div className="row">
           <h2 className="new-collections__title">Popular Collections</h2>
           <Swiper

@@ -1,5 +1,5 @@
 import React from "react";
-import '../components/ui/Skeleton.css';
+import '../ui/Skeleton';
 
 export default function UserPageSkeleton() {
   return (
