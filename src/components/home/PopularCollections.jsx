@@ -1,16 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import NewCollectionsSkeleton from "../ui/NewCollectionsSkeleton";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 import "swiper/css/bundle";
 import CollectionCard from "../collection/CollectionCard";
-import AOS from 'aos';
-import 'aos/dist/aos.css'; 
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 AOS.init();
-
 
 export default function PopularCollections() {
   const [data, setData] = useState([]);
@@ -36,35 +34,35 @@ export default function PopularCollections() {
 
   return (
     <section id="new-collections">
-      <div className="container" data-aos="fade-up" >
+      <div className="container" data-aos="fade-up">
         <div className="row">
           <h2 className="new-collections__title">Popular Collections</h2>
           <Swiper
-            modules={[Navigation, Pagination]}
+            modules={[Navigation]}
             spaceBetween={10}
-            slidesPerView={6} 
+            slidesPerView={6}
             navigation
             loop
             pagination={{ clickable: true }}
             scrollbar={{ draggable: true }}
             breakpoints={{
               320: {
-                slidesPerView: 1, 
+                slidesPerView: 1,
               },
               480: {
-                slidesPerView: 2, 
+                slidesPerView: 2,
               },
               768: {
-                slidesPerView: 3, 
+                slidesPerView: 3,
               },
               1024: {
-                slidesPerView: 4, 
+                slidesPerView: 4,
               },
               1200: {
-                slidesPerView: 5, 
+                slidesPerView: 5,
               },
               1440: {
-                slidesPerView: 6, 
+                slidesPerView: 6,
               },
             }}
           >

@@ -33,7 +33,7 @@ export default function SelectedCollection() {
 
   return (
     <header>
-      <div className="selected-collection " >
+      <div className="selected-collection" >
         <video
           autoPlay
           muted

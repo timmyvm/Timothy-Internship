@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
+import { Navigation} from "swiper/modules";
 import "swiper/css/bundle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingBag, faTableCells } from "@fortawesome/free-solid-svg-icons";
@@ -40,7 +40,7 @@ export default function RecommendedItems({ dataId }) {
             <div className="recommended-items__body">
               {items.length > 0 ? (
                 <Swiper
-                  modules={[Navigation, Pagination]}
+                  modules={[Navigation]}
                   spaceBetween={10}
                   slidesPerView={4}
                   navigation
