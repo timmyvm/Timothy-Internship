@@ -52,7 +52,7 @@ export default function SelectedCollection() {
           <h1 className="selected-collection__title">
             {data?.title || "Loading..."}
           </h1>
-          <Link to={`/user/${creatorId}`} className="selected-collection__author">
+          <Link to={`/user/${data.creatorId}`} className="selected-collection__author">
             By {data?.creator || "Loading..."}
             <img
               src={VerifiedIcon}
