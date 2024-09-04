@@ -5,7 +5,7 @@ export default function CollectionCard({item }) {
 
 
   return (
-    <Link to={`/collection/${item.collectionId}`} className="collection">
+    <Link to={`/collection/${item.collectionId || item.id}`} className="collection">
       <img src={item.imageLink} alt={item.title} className="collection__img" />
       <div className="collection__info">
         <h3 className="collection__name">{item.title}</h3>

@@ -34,7 +34,7 @@ export default function CollectionPage() {
         <>
           <CollectionHeader data={data} />
           <CollectionInfo data={data} />
-          <CollectionItems items={data.items} data={data} />
+          <CollectionItems items={data.items} />
         </>
       ) : (
         <>

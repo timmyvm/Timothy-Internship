@@ -13,7 +13,6 @@ AOS.init();
 export default function NewCollections() {
   const [data, setData] = useState([]);
 
-
   async function fetchData() {
     try {
       const response = await axios.get(

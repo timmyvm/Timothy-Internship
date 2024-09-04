@@ -19,7 +19,7 @@ export default function CollectionItemsSkeleton() {
         </div>
         <div className="collection-items__body">
           {new Array(12).fill(0).map((_, index) => (
-            <div className="item-column">
+            <div className="item-column" key={index}>
                 <div className="item">
               <figure className="item__img__wrapper skeleton">
               </figure>

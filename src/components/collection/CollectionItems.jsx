@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function CollectionItems({ items, data }) {
+export default function CollectionItems({ items }) {
   const [sortOption, setSortOption] = useState("");
   const [sortedItems, setSortedItems] = useState(items);
   const [visibleCount, setVisibleCount] = useState(12);
